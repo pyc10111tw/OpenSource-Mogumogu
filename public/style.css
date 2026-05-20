@@ -1,0 +1,44 @@
+@font-face {
+    font-family: "Starborn";
+    src: url(/assets//fonts/Starborn.ttf);
+}
+body {
+    background-image: url(/assets/images/wallpaper1.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;  /* makes body fullscreen height */
+    /* overflow: hidden;   */
+}
+
+#title , #petStatus {
+    font-family: "Starborn";
+    color: #F4ADCF;
+    margin-bottom: 50px;
+}
+
+#pet {
+    width: 250px;
+    height: auto;
+}
+
+.homepageContainer {
+    display: flex;
+    flex-direction: column;  /*this is what makes it align downwards instead of sideways*/
+    align-items: center;
+    height: 75vh;
+    justify-content: center;
+}
+
+.navImages {
+    width: 100px;
+    height: auto;
+}
+.navigation {
+    bottom: 30px;  /* to make this not stick to the bottom of the page */
+    position: fixed;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-evenly;
+}

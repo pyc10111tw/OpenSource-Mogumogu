@@ -8,7 +8,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     height: 100vh;  /* makes body fullscreen height */
-    /* overflow: hidden;   */
+    overflow: hidden;  /* disables scrolling */
 }
 
 #title , #petStatus {
@@ -26,7 +26,7 @@ body {
     display: flex;
     flex-direction: column;  /*this is what makes it align downwards instead of sideways*/
     align-items: center;
-    height: 75vh;
+    height: 80vh;
     justify-content: center;
 }
 
@@ -41,4 +41,10 @@ body {
     display: flex;
     align-items: flex-end;
     justify-content: space-evenly;
+}
+
+.navText {
+    text-align: center;
+    font-family: Starborn;
+    color: #F4ADCF;
 }

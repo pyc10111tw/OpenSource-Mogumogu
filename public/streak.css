@@ -1,0 +1,29 @@
+@font-face {
+    font-family: "Starborn";
+    src: url(/assets//fonts/Starborn.ttf);
+}
+body {
+    background-image: url(/assets/images/wallpaper2.jpg);
+    overflow: hidden;  
+}
+
+#streakContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#streakBox {
+    width: 600px;
+    height: 500px;
+    background: #FFF4BF;
+}
+
+#streakTitle {
+    margin-bottom: 50px;
+    font-family: Starborn;
+    font-size: 40px;
+    color: #F4ADCF;
+}

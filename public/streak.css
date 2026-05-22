@@ -14,16 +14,56 @@ body {
     align-items: center;
     height: 100vh;
 }
-
-#streakBox {
-    width: 600px;
-    height: 500px;
-    background: #FFF4BF;
-}
-
 #streakTitle {
     margin-bottom: 50px;
     font-family: Starborn;
     font-size: 40px;
     color: #F4ADCF;
 }
+
+/* this is the yellow box */
+#streakBox {
+    width: 600px;
+    height: 500px;
+    background: #FFF4BF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#streakFire {
+    width: 100%;
+    height: 300px;
+}
+
+#streakDayContainer {
+    position: relative;
+}
+
+#dayStreakNumber {
+    position: absolute;    /* this is what makes it overlay relative to its nearesr pos:relative*/
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 5px;
+    font-family: Starborn;
+    font-size: 40px;
+    color: #FFF4BF;
+}
+
+#dayStreak {
+    font-family: Starborn;
+    color: red;
+    font-size: 30px;
+}
+
+/* 
+.streakBlackBox {
+    background-color: black;
+    opacity: 50%;
+    width: 150px;
+    height: 75px;
+}
+ */
+

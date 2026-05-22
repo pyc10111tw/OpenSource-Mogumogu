@@ -1,9 +1,9 @@
 @font-face {
     font-family: "Starborn";
-    src: url(/assets//fonts/Starborn.ttf);
+    src: url(/public/assets//fonts/Starborn.ttf);
 }
 body {
-    background-image: url(/assets/images/wallpaper1.jpg);
+    background-image: url(/public/assets/images/wallpaper1.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

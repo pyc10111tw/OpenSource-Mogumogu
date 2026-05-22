@@ -1,9 +1,9 @@
 @font-face {
     font-family: "Starborn";
-    src: url(/assets//fonts/Starborn.ttf);
+    src: url(/public/assets/fonts/Starborn.ttf);
 }
 body {
-    background-image: url(/assets/images/wallpaper2.jpg);
+    background-image: url(/public/assets/images/wallpaper2.jpg);
     overflow: hidden;  
 }
 
@@ -43,27 +43,49 @@ body {
 
 #dayStreakNumber {
     position: absolute;    /* this is what makes it overlay relative to its nearesr pos:relative*/
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 5px;
     font-family: Starborn;
-    font-size: 40px;
-    color: #FFF4BF;
+    font-size: 100px;
+    color: #f8da00;
+    -webkit-text-stroke: 5px white;  /* the white border around the number */
 }
 
 #dayStreak {
     font-family: Starborn;
     color: red;
     font-size: 30px;
+    margin-bottom: 20px;
 }
 
-/* 
+#blackBox {
+    display: flex;
+    gap: 110px;
+}
+
 .streakBlackBox {
     background-color: black;
     opacity: 50%;
-    width: 150px;
-    height: 75px;
+    width: 180px;
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
- */
+
+#longestStreakNumber , #totalDaysNumber  {
+    color: white;
+    font-family: Starborn;
+    font-size: 35px;
+}
+#longestStreak , #totalDaysLogged {
+    color: white;
+    font-family: Starborn;
+    font-size: 13px;
+}
+
+
 

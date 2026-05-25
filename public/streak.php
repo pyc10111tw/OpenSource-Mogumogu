@@ -1,3 +1,33 @@
-<?php
-    echo "🔥67<br>day streak<br><br>";
-?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoguMogu Streak</title>
+    <link rel="stylesheet" href="streak.css">
+</head>
+<body>
+    <div id="streakContainer">
+        <div id="streakTitle">Your Streak</div>
+
+        <div id="streakBox">    <!--this is the yellow box -->
+            <div id="streakDayContainer">
+                <div><img id="streakFire"src="/public/assets/images/streakFire.png"></div>
+                <div id="dayStreakNumber">67</div>    <!-- placeholder value -->
+            </div>
+            <div id="dayStreak">Day Streak</div>
+
+            <div id="blackBox">
+                <div class="streakBlackBox">
+                    <div id="longestStreakNumber">69</div>    <!-- placeholder value -->
+                    <div id="longestStreak">Longest Streak</div>
+                </div>
+                <div class="streakBlackBox">
+                    <div id="totalDaysNumber">290</div>    <!-- placeholder value -->
+                    <div id="totalDaysLogged">Total Days Logged</div>
+                </div>
+            </div>
+        </div>
+    </div> 
+</body>
+</html>

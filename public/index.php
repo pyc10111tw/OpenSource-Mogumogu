@@ -11,7 +11,9 @@
      <div class="homepageContainer">
         <div id="title"><h1>Mogu Mogu Meal Tracker!</h1></div>
         <img id="pet"src="/assets/images/duckpet.png">
-        <div id="petStatus">Pet Status</div>
+        <a href="status.php">
+            <div id="petStatus">Pet Status</div>
+        </a>
      </div>
      <div class="navigation">
         <div class="cards">
@@ -26,8 +28,10 @@
             <div class="navText">Streak</div> </a>
         </div>
         <div class="cards">
+            <a href="history.php">
             <div id="mealHistory"><img class="navImages" src="/assets/images/photoalbum.png"></div>
             <div class="navText">Meal History</div>
+            </a>
         </div>
      </div>
 

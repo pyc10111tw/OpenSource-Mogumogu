@@ -10,23 +10,23 @@
     <!-- HOMEPAGE -->
      <div class="homepageContainer">
         <div id="title"><h1>Mogu Mogu Meal Tracker!</h1></div>
-        <img id="pet"src="/public/assets/images/duckpet.png">
+        <img id="pet"src="/assets/images/duckpet.png">
         <div id="petStatus">Pet Status</div>
      </div>
      <div class="navigation">
         <div class="cards">
             <a href="logmeal.html">
-                <div id="logMeal"><img class="navImages" src="/public/assets/images/foodbowl.png"></div>
+                <div id="logMeal"><img class="navImages" src="/assets/images/foodbowl.png"></div>
                 <div class="navText">Log Meal</div>
             </a>
         </div>
         <div class="cards">
             <a href="streak.php">
-            <div id="streak"><img class="navImages"  src="/public/assets/images/bonfire.png"></div>
+            <div id="streak"><img class="navImages"  src="/assets/images/bonfire.png"></div>
             <div class="navText">Streak</div> </a>
         </div>
         <div class="cards">
-            <div id="mealHistory"><img class="navImages" src="/public/assets/images/photoalbum.png"></div>
+            <div id="mealHistory"><img class="navImages" src="/assets/images/photoalbum.png"></div>
             <div class="navText">Meal History</div>
         </div>
      </div>

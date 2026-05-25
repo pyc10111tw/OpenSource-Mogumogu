@@ -12,7 +12,7 @@
 
         <div id="streakBox">    <!--this is the yellow box -->
             <div id="streakDayContainer">
-                <div><img id="streakFire"src="/public/assets/images/streakFire.png"></div>
+                <div><img id="streakFire"src="/assets/images/streakFire.png"></div>
                 <div id="dayStreakNumber">67</div>    <!-- placeholder value -->
             </div>
             <div id="dayStreak">Day Streak</div>

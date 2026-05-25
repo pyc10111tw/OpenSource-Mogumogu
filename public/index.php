@@ -21,7 +21,7 @@
             </a>
         </div>
         <div class="cards">
-            <a href="streak.html">
+            <a href="streak.php">
             <div id="streak"><img class="navImages"  src="/public/assets/images/bonfire.png"></div>
             <div class="navText">Streak</div> </a>
         </div>

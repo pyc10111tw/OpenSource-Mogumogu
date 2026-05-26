@@ -1,9 +1,9 @@
 @font-face {
     font-family: "Starborn";
-    src: url(/public/assets/fonts/Starborn.ttf);
+    src: url(/assets/fonts/Starborn.ttf);
 }
 body {
-    background-image: url(/public/assets/images/wallpaper2.jpg);
+    background-image: url(/assets/images/wallpaper2.jpg);
     overflow: hidden;  
 }
 
@@ -23,11 +23,38 @@ body {
 }
 
 #logMealBox {
-    width: 600px;
-    height: 500px;
-    background: #FFF4BF;
+    width: 750px;
+    height: 550px;
+    background: #E9FAFF;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+#buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 100px;
+    margin-bottom: 100px;
+}
+.uploadButtons {
+    font-family: Starborn;
+    color: #FFF4BF;
+    background-color: #F2619C;
+    border-radius: 30px;
+    width: 200px;
+    height: 40px;
+}
+
+#mealDate {
+    font-family: Starborn;
+    color: #95BBEA;
+    font-size: 20px;
+}
+input[type="date"] {
+    background-color: #FFF4BF;
+    font-family: Starborn;
+    font-size: 20px;
 }

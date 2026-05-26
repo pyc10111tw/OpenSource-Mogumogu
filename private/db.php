@@ -1,4 +1,5 @@
 <?php
+// may change when deploy
 $host = "localhost";
 $dbname = "food_pet_app";
 $username = "root";

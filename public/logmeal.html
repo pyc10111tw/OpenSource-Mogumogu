@@ -10,7 +10,29 @@
     <div id="logMealContainer">
         <div id="logMealTitle">Log a Meal</div>
         <div id="logMealBox">
-            
+            <div id="buttonContainer">
+                <button class="uploadButtons">Camera</button>
+                <button class="uploadButtons">Upload</button>
+            </div>
+            <div id="mealDate">
+                <label for="logMealDate">Select Date:</label>
+                <input type="date" id="logMealDate" name="log-meal">   <!-- to make the calendar date input-->
+            </div>
+            <div id="mealType">
+                <label for="Meal Type">Meal Type:</label>
+                <select name="mealType" id="meals"> <!-- to make the dropdown list -->
+                    <option value="Breakfast">Breakfast</option>
+                    <option value="Lunch">Lunch</option>
+                    <option value="Dinner">Dinner</option>
+                    <option value="Snack">Snack</option>
+                </select>  
+            </div>
+            <div id="notes">
+                <form>
+                    <label for="notes">Notes:</label>
+                    <input type="text" id="notes">
+                </form>
+            </div>
         </div>
     </div>
 </body>

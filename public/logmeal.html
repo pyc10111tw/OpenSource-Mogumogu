@@ -10,7 +10,28 @@
     <div id="logMealContainer">
         <div id="logMealTitle">Log a Meal</div>
         <div id="logMealBox">
-            
+            <form action="savemeal.php" method="POST" enctype="multipart/form-data"
+      style="display:flex; flex-direction:column; align-items:center; gap:16px; width:100%;">
+
+    <div style="display:flex; flex-direction:column; width:80%; gap:6px;">
+        <label style="font-family:Starborn; font-size:18px; color:#e07b39;">What did you eat?</label>
+        <input type="text" name="meal_name" placeholder="e.g. Ramen, Tacos..." required
+               style="padding:10px; border:2px solid #F4ADCF; border-radius:8px; font-size:1rem;">
+    </div>
+
+    <div style="display:flex; flex-direction:column; width:80%; gap:6px;">
+        <label style="font-family:Starborn; font-size:18px; color:#e07b39;">Add a photo (optional)</label>
+        <input type="file" name="meal_photo" accept="image/*">
+    </div>
+
+    <button type="submit"
+            style="font-family:Starborn; font-size:22px; color:white; background:#F4ADCF;
+                   border:none; border-radius:30px; padding:10px 50px; cursor:pointer;">
+        Feed the pet! 🐾
+    </button>
+
+</form>
+Save with Ctrl+S, then go to http://localhost/logmeal.html, type a meal name and hit submit. Tell me what happens!
         </div>
     </div>
 </body>

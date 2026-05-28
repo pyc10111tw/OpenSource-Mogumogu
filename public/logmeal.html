@@ -10,8 +10,53 @@
     <div id="logMealContainer">
         <div id="logMealTitle">Log a Meal</div>
         <div id="logMealBox">
-            
+        <form action="logmeal.php" method="POST" enctype="multipart/form-data">
+
+        <div id="buttonContainer">
+            <button type="button" class="uploadButtons" onclick="document.getElementById('cameraInput').click()">Camera</button>
+            <button type="button" class="uploadButtons" onclick="document.getElementById('uploadInput').click()">Upload</button>
+            <input type="file" id="cameraInput" name="meal_photo" accept="image/*" capture="environment" style="display:none">
+            <input type="file" id="uploadInput" name="meal_photo" accept="image/*" style="display:none">
+        </div>
+
+        <div id="mealType">
+            <label for="Meal Type">Meal Type:</label>
+            <select name="mealType" id="meals"> 
+                <option value="Breakfast">Breakfast</option>
+                <option value="Lunch">Lunch</option>
+                <option value="Dinner">Dinner</option>
+                <option value="Snack">Snack</option>
+                </select>  
+            </div>
+
+            <div id="mealNotes">
+                <label for="notes">Notes:</label>
+                <input type="text" id="notes" name="meal_name">    
+            </div>
+
+            <div id="submitButton"><button type="submit" id="submitButton">Save Meal</button></div>
+          <a href="index.php" id="back-link">← Back to Home</a>
+          </form>
         </div>
     </div>
+<script>
+    // Sync camera and upload inputs so either one counts
+    document.getElementById('cameraInput').addEventListener('change', function() {
+        document.getElementById('uploadInput').files = this.files;
+    });
+    document.getElementById('uploadInput').addEventListener('change', function() {
+        document.getElementById('cameraInput').files = this.files;
+    });
+
+    // Validate on submit - at least one photo required
+    document.querySelector('form').addEventListener('submit', function(e) {
+        const camera = document.getElementById('cameraInput').files.length;
+        const upload = document.getElementById('uploadInput').files.length;
+        if (camera === 0 && upload === 0) {
+            e.preventDefault();
+            alert('Please take a photo or upload one!');
+        }
+    });
+</script>
 </body>
 </html>

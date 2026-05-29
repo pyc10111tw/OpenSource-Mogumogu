@@ -16,9 +16,12 @@ if ($meal_name === '') {
 }
 
 $image_path = null;
-
+$upload_dir = __DIR__ . '/upload/';
+if (!is_dir($upload_dir)) {
+    mkdir($upload_dir, 0777, true);
+}
+// known issue: only works if the upload folder is alreadythere
 if (!empty($_FILES['meal_photo']['name'])) {
-    $upload_dir = __DIR__ . '/upload/';
     $ext = strtolower(pathinfo($_FILES['meal_photo']['name'], PATHINFO_EXTENSION));
     $allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
     if (!in_array($ext, $allowed)) {

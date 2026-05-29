@@ -135,10 +135,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_meal_id'])) {
               <div class="card-date"><?= $display_date ?></div>
                <form method="POST">
                 <input type="hidden" name="meal_id" value="<?= $m['id'] ?>">
-                <button type="submit">Delete</button>
+                <button type="submit" class="delete-btn">Delete</button>
             </form>
              <!-- Edit toggle -->
-            <button onclick="toggleEdit(<?= $m['id'] ?>)">Edit</button>
+            <button onclick="toggleEdit(<?= $m['id'] ?>)" class="Edit-btn">Edit</button>
 
             <!-- Edit form (hidden by default) -->
             <div id="edit-<?= $m['id'] ?>" style="display:none; margin-top:8px;">

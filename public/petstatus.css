@@ -1,0 +1,47 @@
+@font-face {
+    font-family: "Starborn";
+    src: url(/public/assets/fonts/Starborn.ttf);
+}
+body {
+    background-image: url(/public/assets/images/wallpaper2.jpg);
+    overflow: hidden;  
+}
+
+#petStatusContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#petStatusTitle {
+    margin-bottom: 50px;
+    font-family: Starborn;
+    font-size: 40px;
+    color: #F4ADCF;
+}
+
+#petStatusBox {
+    width: 850px;
+    height: 500px;
+    background: #E9FAFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#petHealthContainer {
+    width: 775px;
+    height: 275px;
+    border: black 1px solid;
+    box-sizing: border-box;
+    margin-bottom: 25px;
+}
+
+#petHealthGuide {
+    width: 775px;
+    height: 150px;
+    background: #F4ADCF;
+}

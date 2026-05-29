@@ -12,8 +12,9 @@ CREATE TABLE users (
 CREATE TABLE meals (
   id INT AUTO_INCREMENT PRIMARY KEY,
   user_id INT NOT NULL,
-  meal_name VARCHAR(100),
-  image_path VARCHAR(255),
+  meal_name VARCHAR(100) NOT NULL,
+  meal_type VARCHAR(50) NOT NULL,
+  image_path VARCHAR(255) NOT NULL,
   logged_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id)
 );

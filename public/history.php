@@ -1,5 +1,5 @@
 <?php
-require_once '../private/db.php';
+require_once __DIR__ . '/../private/db.php';
 
 $user_id = 1;
 

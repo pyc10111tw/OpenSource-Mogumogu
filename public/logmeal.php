@@ -7,7 +7,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 }
 
 $user_id = 1;
-$meal_date = date('Y-m-d');
 $meal_type = $_POST['meal_type'] ?? null;
 $meal_name = trim($_POST['meal_name'] ?? '');
 
@@ -36,12 +35,11 @@ if (!empty($_FILES['meal_photo']['name'])) {
 
 try {
     $stmt = $pdo->prepare(
-        "INSERT INTO meals (user_id, meal_date, meal_type, meal_name, image_path)
-         VALUES (:user_id, :meal_date, :meal_type, :meal_name, :image_path)"
+        "INSERT INTO meals (user_id, meal_type, meal_name, image_path)
+         VALUES (:user_id, :meal_type, :meal_name, :image_path)"
     );
     $stmt->execute([
         ':user_id'    => $user_id,
-        ':meal_date'  => $meal_date,
         ':meal_type'  => $meal_type,
         ':meal_name'  => $meal_name,
         ':image_path' => $image_path

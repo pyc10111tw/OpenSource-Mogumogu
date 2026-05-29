@@ -1,16 +1,15 @@
 <?php
 require_once __DIR__ . '/../private/db.php';
 
-$user_id = 1;
+//$user_id = 1;
 
 try {
     $stmt = $pdo->prepare(
         "SELECT id, meal_name, image_path, logged_at
          FROM meals
-         WHERE user_id = :uid
          ORDER BY logged_at DESC"
     );
-    $stmt->execute([':uid' => $user_id]);
+    $stmt->execute();
     $meals = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     $meals = [];
@@ -37,8 +36,8 @@ if ($next_month > 12) { $next_month = 1;  $next_year++; }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['meal_id'])) {
     $meal_id = (int)$_POST['meal_id'];
-    $stmt = $pdo->prepare("DELETE FROM meals WHERE id = :id AND user_id = :uid");
-    $stmt->execute([':id' => $meal_id, ':uid' => $user_id]);
+    $stmt = $pdo->prepare("DELETE FROM meals WHERE id = :id");
+    $stmt->execute([':id' => $meal_id]);
     header('Location: history.php');
     exit;
 }
@@ -61,8 +60,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_meal_id'])) {
         }
     }
 
-    $stmt = $pdo->prepare("UPDATE meals SET meal_name = :name, image_path = :img WHERE id = :id AND user_id = :uid");
-    $stmt->execute([':name' => $meal_name, ':img' => $image_path, ':id' => $meal_id, ':uid' => $user_id]);
+    $stmt = $pdo->prepare("UPDATE meals SET meal_name = :name, image_path = :img WHERE id = :id");
+    $stmt->execute([':name' => $meal_name, ':img' => $image_path, ':id' => $meal_id]);
     header('Location: history.php');
     exit;
 }

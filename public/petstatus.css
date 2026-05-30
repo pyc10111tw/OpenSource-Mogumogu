@@ -38,10 +38,55 @@ body {
     border: black 1px solid;
     box-sizing: border-box;
     margin-bottom: 25px;
+    display: flex;
+    flex-direction: row;
 }
 
 #petHealthGuide {
     width: 775px;
     height: 150px;
     background: #F4ADCF;
+}
+
+#petImageContainer {
+    width: 250px;
+    height: 275px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: black 1px solid;
+    box-sizing: border-box;
+}
+
+#petSize {
+    width: 220px;
+    height: auto;
+}
+
+#petName {
+    color: #F4ADCF;
+    font-family: Starborn;
+    font-size: 20px;
+}
+
+#healthBarContainer {
+    height: 275px;
+    width: 525px;
+    border: black 1px solid; 
+    box-sizing: border-box;
+}
+
+#healthBarContents {
+    margin-left: 50px;
+    margin-top: 40px;
+    font-family:monospace;
+    font-size: 20px;
+}
+
+#healthBar {
+    width: 400px;
+    height: 20px;
+    border: black 1px solid;
+    background-color: lightgray;
 }

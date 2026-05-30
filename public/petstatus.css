@@ -42,12 +42,6 @@ body {
     flex-direction: row;
 }
 
-#petHealthGuide {
-    width: 775px;
-    height: 150px;
-    background: #F4ADCF;
-}
-
 #petImageContainer {
     width: 250px;
     height: 275px;
@@ -101,4 +95,30 @@ body {
     border-radius: 30px;
     width: 150px;
     height: 40px;
+}
+
+#petHealthGuide {
+    width: 775px;
+    height: 150px;
+    background: #DD4D94;
+    opacity: 80%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+}
+
+#happyStatus , #goodStatus, #hungryStatus, #criticalStatus {
+    width: 150px;
+    height: 100px;
+    background-color: #FFF4BF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.reactionImage {
+    width: 100px;
+    height: auto;
 }

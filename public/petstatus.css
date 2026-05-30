@@ -55,8 +55,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: black 1px solid;
-    box-sizing: border-box;
 }
 
 #petSize {
@@ -73,20 +71,34 @@ body {
 #healthBarContainer {
     height: 275px;
     width: 525px;
-    border: black 1px solid; 
-    box-sizing: border-box;
 }
 
 #healthBarContents {
-    margin-left: 50px;
-    margin-top: 40px;
+    margin-left: 40px;
+    margin-top: 60px;
     font-family:monospace;
     font-size: 20px;
 }
 
 #healthBar {
     width: 400px;
-    height: 20px;
+    height: 10px;
     border: black 1px solid;
     background-color: lightgray;
+}
+
+#healthBarDisplay {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+#logMealButton {
+    margin-top: 30px;
+    font-family: Starborn;
+    color: #95BBEA;;
+    background-color: #FFF4BF;
+    border-radius: 30px;
+    width: 150px;
+    height: 40px;
 }

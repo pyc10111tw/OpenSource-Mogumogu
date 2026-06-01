@@ -116,9 +116,19 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 .reactionImage {
-    width: 100px;
+    width:90px;
     height: auto;
+}
+#critical {
+    margin-bottom: 7px;
+}
+
+.statusDescription {
+    font-family: Starborn;
+    font-size: 10px;
+    text-align: center;
 }

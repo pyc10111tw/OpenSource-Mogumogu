@@ -21,8 +21,10 @@
                     <div id="healthBarContents">
                         <p>Health Bar:</p>
                         <div id="healthBarDisplay">
-                            <div id="healthBar"></div>
-                            <div style="font-size: 15px; margin-left: 5px;" id="healthPercentage">100%</div>
+                            <div id="healthBarGray">
+                                <div id="healthBarGreen"></div>   <!-- sit on top of the gray health bar -->
+                            </div>
+                            <div style="font-size: 15px; margin-left: 5px;" id="healthPercentage">100%</div>  
                         </div>
                         <div><a href="logmeal.php"><button id="logMealButton">Log Meal</button></a></div>
                     </div>
@@ -61,5 +63,11 @@
         </div>
         <a href="index.php" id="backLink">← Back to Home</a>
     </div>
+    <script>
+        const healthValue =  75; //placeholder, replace with php variable 
+
+        document.getElementById("healthBarGreen").style.width = healthValue + '%';  
+        document.getElementById("healthPercentage").textContent = healthValue + '%';     
+    </script>
 </body>
 </html>

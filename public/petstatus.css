@@ -74,11 +74,19 @@ body {
     font-size: 20px;
 }
 
-#healthBar {
+#healthBarGray {
     width: 400px;
     height: 10px;
     border: black 1px solid;
     background-color: lightgray;
+    position: relative;
+}
+
+/* this is the dynamic js part */
+#healthBarGreen {
+    background-color: green;
+    box-sizing: border-box;
+    height: 100%;
 }
 
 #healthBarDisplay {

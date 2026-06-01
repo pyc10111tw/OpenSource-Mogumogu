@@ -132,3 +132,11 @@ body {
     font-size: 10px;
     text-align: center;
 }
+
+#backLink {
+    text-align: center; 
+    margin-top: 24px; 
+    font-family: Starborn; 
+    color: #F4ADCF; 
+    text-decoration: none; 
+}

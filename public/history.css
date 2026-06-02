@@ -1,0 +1,205 @@
+@font-face {
+    font-family: "Starborn";
+    src: url(/assets/fonts/Starborn.ttf);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background-image: url(/assets/images/wallpaper2.jpg);
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    font-family: sans-serif;
+    padding-bottom: 40px;
+}
+
+#historyTitle {
+    font-family: Starborn;
+    font-size: 40px;
+    color: #F4ADCF;
+    text-align: center;
+    padding: 30px 0 16px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.tabs button {
+    font-family: Starborn;
+    font-size: 18px;
+    padding: 8px 28px;
+    border: 3px solid #F4ADCF;
+    border-radius: 30px;
+    background: transparent;
+    color: #F4ADCF;
+    cursor: pointer;
+}
+
+.tabs button.active { 
+    background: #F4ADCF; 
+    color: white; 
+}
+
+.contentBox {
+    width: 660px;
+    max-width: 95vw;
+    background: #FFF4BF;
+    margin: 0 auto;
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.tab-section { 
+    display: none;
+}
+
+.tab-section.active { 
+    display: block; 
+}
+
+.cal-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.cal-nav a { 
+    font-family: Starborn; 
+    font-size: 22px; 
+    color: #e07b39; 
+    text-decoration: none; 
+    padding: 0 8px; 
+}
+
+.cal-nav span { 
+    font-family: Starborn; 
+    font-size: 22px; 
+    color: #555; 
+}
+
+.calendar { 
+    display: grid; 
+    grid-template-columns: repeat(7, 1fr); 
+    gap: 4px; }
+
+.cal-header {
+    font-family: Starborn;
+    font-size: 13px;
+    text-align: center;
+    background: #F4ADCF;
+    color: white;
+    padding: 5px 0;
+    border-radius: 4px;
+}
+
+.cal-day {
+    min-height: 68px;
+    padding: 5px;
+    border: 1px solid #e8d5a0;
+    border-radius: 6px;
+    background: white;
+    font-size: 0.78rem;
+}
+
+.cal-day.empty { 
+    background: transparent; 
+    border: none; 
+}
+
+.cal-day.today { 
+    border: 2px solid #F4ADCF; 
+}
+
+.cal-day.has-meal { 
+    background: #e8f5e9; 
+}
+
+.cal-day .day-num { 
+    font-weight: bold; 
+    font-size: 0.88rem; }
+
+.cal-day .meal-label {
+    display: block;
+    font-size: 0.7rem;
+    color: #555;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.gallery { 
+    display: grid; 
+    grid-template-columns: 
+    repeat(auto-fill, minmax(170px, 1fr)); 
+    gap: 14px; 
+}
+
+.gallery-card { 
+    background: white; 
+    border-radius: 10px; 
+    overflow: hidden; 
+    box-shadow: 0 2px 6px rgba(0,0,0,.1); 
+}
+
+.gallery-card img { 
+    width: 100%; 
+    height: 130px; 
+    object-fit: cover; 
+    display: block; 
+}
+
+.gallery-card .no-photo {
+    width: 100%; height: 130px;
+    background: #fde8d8;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.8rem;
+}
+
+.gallery-card .card-body { 
+    padding: 10px; 
+}
+.gallery-card .card-name { 
+    font-family: Starborn; 
+    font-size: 1rem; 
+    color: #555; 
+    margin-bottom: 3px; 
+}
+
+.gallery-card .card-date { 
+    font-size: 0.75rem; 
+    color: #999; 
+}
+
+.empty-msg { 
+    text-align: center; 
+    font-family: Starborn; 
+    font-size: 1.1rem; 
+    color: #aaa; 
+    padding: 30px 0; 
+}
+
+.back-link { 
+    display: block; 
+    text-align: center; 
+    margin-top: 24px; 
+    font-family: Starborn; 
+    font-size: 1rem; 
+    color: #F4ADCF; 
+    text-decoration: none; 
+}
+
+.delete-btn:hover {
+    background: #ff6b6b;
+    color: white;
+}
+
+.edit-btn:hover {
+    background: #95BBEA;
+    color: white;
+}

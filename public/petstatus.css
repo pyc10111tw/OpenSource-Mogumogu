@@ -1,0 +1,150 @@
+@font-face {
+    font-family: "Starborn";
+    src: url(/assets/fonts/Starborn.ttf);
+}
+body {
+    background-image: url(/assets/images/wallpaper2.jpg);
+    overflow: hidden;  
+}
+
+#petStatusContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#petStatusTitle {
+    margin-bottom: 50px;
+    font-family: Starborn;
+    font-size: 40px;
+    color: #F4ADCF;
+}
+
+#petStatusBox {
+    width: 850px;
+    height: 500px;
+    background: #E9FAFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#petHealthContainer {
+    width: 775px;
+    height: 275px;
+    border: black 1px solid;
+    box-sizing: border-box;
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: row;
+}
+
+#petImageContainer {
+    width: 250px;
+    height: 275px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#petSize {
+    width: 220px;
+    height: auto;
+}
+
+#petName {
+    color: #F4ADCF;
+    font-family: Starborn;
+    font-size: 20px;
+}
+
+#healthBarContainer {
+    height: 275px;
+    width: 525px;
+}
+
+#healthBarContents {
+    margin-left: 40px;
+    margin-top: 60px;
+    font-family:monospace;
+    font-size: 20px;
+}
+
+#healthBarGray {
+    width: 400px;
+    height: 10px;
+    border: black 1px solid;
+    background-color: lightgray;
+    position: relative;
+}
+
+/* this is the dynamic js part */
+#healthBarGreen {
+    background-color: green;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+#healthBarDisplay {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+#logMealButton {
+    margin-top: 30px;
+    font-family: Starborn;
+    color: #95BBEA;;
+    background-color: #FFF4BF;
+    border-radius: 30px;
+    width: 150px;
+    height: 40px;
+}
+
+#petHealthGuide {
+    width: 775px;
+    height: 150px;
+    background: #DD4D94;
+    opacity: 80%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+}
+
+#happyStatus , #goodStatus, #hungryStatus, #criticalStatus {
+    width: 150px;
+    height: 100px;
+    background-color: #FFF4BF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.reactionImage {
+    width:90px;
+    height: auto;
+}
+#critical {
+    margin-bottom: 7px;
+}
+
+.statusDescription {
+    font-family: Starborn;
+    font-size: 10px;
+    text-align: center;
+}
+
+#backLink {
+    text-align: center; 
+    margin-top: 24px; 
+    font-family: Starborn; 
+    color: #F4ADCF; 
+    text-decoration: none; 
+}

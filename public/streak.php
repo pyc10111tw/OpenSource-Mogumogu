@@ -28,6 +28,7 @@
                 </div>
             </div>
         </div>
+        <a href="index.php" id="backLink">← Back to Home</a>
     </div> 
 </body>
 </html>

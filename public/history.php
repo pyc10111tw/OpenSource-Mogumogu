@@ -1,8 +1,6 @@
 <?php
 require_once __DIR__ . '/../private/db.php';
 
-//$user_id = 1;
-
 try {
     $stmt = $pdo->prepare(
         "SELECT id, meal_name, meal_type, image_path, logged_at
@@ -32,6 +30,25 @@ if ($prev_month < 1)  { $prev_month = 12; $prev_year--; }
 $next_month = $month + 1; $next_year = $year;
 if ($next_month > 12) { $next_month = 1;  $next_year++; }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['meal_id'])) {
+    $meal_id = (int)$_POST['meal_id'];
+
+    $stmt = $pdo->prepare("SELECT image_path FROM meals WHERE id = :id");
+    $stmt->execute([':id' => $meal_id]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($row && $row['image_path']) {
+        $file = __DIR__ . '/' . $row['image_path'];
+        if (file_exists($file)) {
+            unlink($file);
+        }
+    }
+
+    $stmt = $pdo->prepare("DELETE FROM meals WHERE id = :id");
+    $stmt->execute([':id' => $meal_id]);
+    header('Location: history.php');
+    exit;
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_meal_id'])) {
     $meal_id   = (int)$_POST['edit_meal_id'];
@@ -46,6 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_meal_id'])) {
         if (in_array($ext, $allowed)) {
             $filename   = uniqid('meal_', true) . '.' . $ext;
             if (move_uploaded_file($_FILES['meal_photo']['tmp_name'], $upload_dir . $filename)) {
+             $old = $_POST['current_image'] ?? null;
             if ($old && file_exists(__DIR__ . '/' . $old)) {
                 unlink(__DIR__ . '/' . $old);
             }
@@ -131,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_meal_id'])) {
                 <span class="card-type"><?= htmlspecialchars($m['meal_type'] ?? '') ?></span>
               </div>
 
-              <div class=""card-date>
+              <div class="card-date>
                 <span class="card-date"><?= $display_date ?></span>
                 <!-- <span class="card-type"><?= htmlspecialchars($m['meal_type'] ?? '') ?></span> -->
             </div>

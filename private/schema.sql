@@ -1,3 +1,6 @@
+CREATE DATABASE Mogumogu;
+USE Mogumogu;
+
 CREATE DATABASE food_pet_app;
 USE food_pet_app;
 

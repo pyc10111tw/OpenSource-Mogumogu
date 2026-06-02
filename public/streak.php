@@ -1,3 +1,32 @@
+<?php
+require_once __DIR__ . "/../private/db.php";
+
+$stm = $pdo->prepare("SELECT streak, last_fed FROM pets LIMIT 1");
+$stm->execute();
+$row = $stm->fetch(PDO::FETCH_ASSOC);
+
+if (!$row) { // if no data
+    $streak = 0;
+    $last_fed = null;
+} else {
+    $streak = $row['streak'];
+    $last_fed = $row['last_fed'];
+}
+$today = date("Y-m-d");
+$yesterday = date("Y-m-d", strtotime("-1 day"));
+
+$streak_num = 0;
+if ($last_fed == $today) {
+    $streak_num = $streak;
+} elseif ($last_fed == $yesterday) {
+    $streak_num = $streak;
+    // black and white fire image?
+} else {
+    $streak_num = 0;
+    // black and white fire image?
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +42,7 @@
         <div id="streakBox">    <!--this is the yellow box -->
             <div id="streakDayContainer">
                 <div><img id="streakFire"src="/assets/images/streakFire.png"></div>
-                <div id="dayStreakNumber">67</div>    <!-- placeholder value -->
+                <div id="dayStreakNumber"><?php echo $streak_num; ?></div>
             </div>
             <div id="dayStreak">Day Streak</div>
 

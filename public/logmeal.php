@@ -9,9 +9,13 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $meal_type = $_POST['meal_type'] ?? null;
 $meal_name = trim($_POST['meal_name'] ?? '');
 
-
 if ($meal_name === '') {
     header('Location: logmeal.html?error=missing_name');
+    exit;
+}
+
+if ($meal_type === null || $meal_type === '') {
+    header('Location: logmeal.html?error=missing_type');
     exit;
 }
 

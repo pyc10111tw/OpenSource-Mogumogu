@@ -26,20 +26,6 @@ if ($last_fed == $today) {
     // black and white fire image?
 }
 
-// when meal logged
-function update_streak() { // don't forget to call this in logmeal
-    global $pdo, $streak, $last_fed, $today, $yesterday;
-    if ($last_fed != $today) {
-        if ($last_fed == $yesterday) {
-            $streak += 1;
-        } else {
-            $streak = 1;
-        }
-        $stm = $pdo->prepare("UPDATE pets SET streak = ?, last_fed = ?");
-        $stm->execute([$streak, $today]);
-    }
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

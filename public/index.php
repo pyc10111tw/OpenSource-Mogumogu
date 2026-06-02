@@ -1,3 +1,14 @@
+<?php
+require_once __DIR__ . "/../private/db.php";
+
+// initialize pets (only when not exists)
+$pdo->query("
+    INSERT INTO pets (streak, last_fed)
+    SELECT 0, NULL
+    WHERE NOT EXISTS (SELECT 1 FROM pets)
+");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

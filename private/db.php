@@ -1,6 +1,6 @@
 <?php
 // may change when deploy
-$host = "localhost";
+$host = "127.0.0.1";
 $dbname = "food_pet_app";
 $username = "root";
 $password = "";

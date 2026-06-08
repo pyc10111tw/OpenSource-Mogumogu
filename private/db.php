@@ -1,6 +1,6 @@
 <?php
 $host = "localhost";
-$dbname = "food_pet_app";
+$dbname = "Mogumogu";
 $username = "root";
 $password = "";
 

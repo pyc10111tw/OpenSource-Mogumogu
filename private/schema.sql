@@ -1,5 +1,5 @@
-CREATE DATABASE food_pet_app;
-USE food_pet_app;
+CREATE DATABASE Mogumogu;
+USE Mogumogu;
 
 CREATE TABLE meals (
   id INT AUTO_INCREMENT PRIMARY KEY,

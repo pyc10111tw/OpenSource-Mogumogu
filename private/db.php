@@ -1,4 +1,5 @@
 <?php
+// may change when deploy
 $host = "localhost";
 $dbname = "Mogumogu";
 $username = "root";

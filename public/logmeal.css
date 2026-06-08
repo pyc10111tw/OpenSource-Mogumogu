@@ -24,7 +24,6 @@ body {
 
 #logMealBox {
     width: 750px;
-    height: 500px;
     background: #E9FAFF;
     display: flex;
     flex-direction: column;
@@ -85,6 +84,7 @@ input[type="text"] {
 
 #mealDate , #mealType, #buttonContainer, #mealNotes {
     margin-bottom: 70px;
+
 }
 
 #back-link { 
@@ -96,3 +96,5 @@ input[type="text"] {
     color: #F4ADCF; 
     text-decoration: none; 
 }
+
+

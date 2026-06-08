@@ -24,7 +24,6 @@ body {
 
 #logMealBox {
     width: 750px;
-    height: 500px;
     background: #E9FAFF;
     display: flex;
     flex-direction: column;

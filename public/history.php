@@ -1,16 +1,13 @@
 <?php
 require_once __DIR__ . '/../private/db.php';
 
-$user_id = 1;
-
 try {
     $stmt = $pdo->prepare(
-        "SELECT id, meal_name, image_path, logged_at
+        "SELECT id, meal_name, meal_type, image_path, logged_at
          FROM meals
-         WHERE user_id = :uid
          ORDER BY logged_at DESC"
     );
-    $stmt->execute([':uid' => $user_id]);
+    $stmt->execute();
     $meals = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     $meals = [];
@@ -33,12 +30,22 @@ if ($prev_month < 1)  { $prev_month = 12; $prev_year--; }
 $next_month = $month + 1; $next_year = $year;
 if ($next_month > 12) { $next_month = 1;  $next_year++; }
 
-
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['meal_id'])) {
     $meal_id = (int)$_POST['meal_id'];
-    $stmt = $pdo->prepare("DELETE FROM meals WHERE id = :id AND user_id = :uid");
-    $stmt->execute([':id' => $meal_id, ':uid' => $user_id]);
+
+    $stmt = $pdo->prepare("SELECT image_path FROM meals WHERE id = :id");
+    $stmt->execute([':id' => $meal_id]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($row && $row['image_path']) {
+        $file = __DIR__ . '/' . $row['image_path'];
+        if (file_exists($file)) {
+            unlink($file);
+        }
+    }
+
+    $stmt = $pdo->prepare("DELETE FROM meals WHERE id = :id");
+    $stmt->execute([':id' => $meal_id]);
     header('Location: history.php');
     exit;
 }
@@ -56,16 +63,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_meal_id'])) {
         if (in_array($ext, $allowed)) {
             $filename   = uniqid('meal_', true) . '.' . $ext;
             if (move_uploaded_file($_FILES['meal_photo']['tmp_name'], $upload_dir . $filename)) {
-                $image_path = 'upload/' . $filename;
+             $old = $_POST['current_image'] ?? null;
+            if ($old && file_exists(__DIR__ . '/' . $old)) {
+                unlink(__DIR__ . '/' . $old);
+            }
+            $image_path = 'upload/' . $filename;
             }
         }
     }
 
-    $stmt = $pdo->prepare("UPDATE meals SET meal_name = :name, image_path = :img WHERE id = :id AND user_id = :uid");
-    $stmt->execute([':name' => $meal_name, ':img' => $image_path, ':id' => $meal_id, ':uid' => $user_id]);
+    $stmt = $pdo->prepare("UPDATE meals SET meal_name = :name, image_path = :img WHERE id = :id");
+    $stmt->execute([':name' => $meal_name, ':img' => $image_path, ':id' => $meal_id]);
     header('Location: history.php');
     exit;
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -131,22 +144,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_meal_id'])) {
               <img src="<?= htmlspecialchars($m['image_path']) ?>" alt="<?= htmlspecialchars($m['meal_name']) ?>">
             <?php endif; ?>
             <div class="card-body">
-              <div class="card-name"><?= htmlspecialchars($m['meal_name']) ?></div>
-              <div class="card-date"><?= $display_date ?></div>
-               <form method="POST">
+              <div class="card-top">
+                <span class="card-name"><?= htmlspecialchars($m['meal_name']) ?></span>
+                <span class="card-type"><?= htmlspecialchars($m['meal_type'] ?? '') ?></span>
+              </div>
+
+              <div class="card-date>
+                <span class="card-date"><?= $display_date ?></span>
+                <!-- <span class="card-type"><?= htmlspecialchars($m['meal_type'] ?? '') ?></span> -->
+            </div>
+
+              <div class="card-actions">
+               <form method="POST" onsubmit="return confirm('Permanently delete this meal?')">
                 <input type="hidden" name="meal_id" value="<?= $m['id'] ?>">
                 <button type="submit" class="delete-btn">Delete</button>
             </form>
              <!-- Edit toggle -->
             <button onclick="toggleEdit(<?= $m['id'] ?>)" class="Edit-btn">Edit</button>
-
+            </div>
             <!-- Edit form (hidden by default) -->
-            <div id="edit-<?= $m['id'] ?>" style="display:none; margin-top:8px;">
+            <div id="edit-<?= $m['id'] ?>" style="display:none;">
                 <form method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="edit_meal_id" value="<?= $m['id'] ?>">
                 <input type="hidden" name="current_image" value="<?= htmlspecialchars($m['image_path'] ?? '') ?>">
                 <input type="text" name="meal_name" value="<?= htmlspecialchars($m['meal_name']) ?>" required>
-                <input type="file" name="meal_photo" accept="image/*";>
+                <input type="file" name="meal_photo" accept="image/*">
                 <button type="submit">Save</button>
                 </form>
             </div>

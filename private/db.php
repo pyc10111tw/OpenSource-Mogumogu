@@ -1,7 +1,7 @@
 <?php
-// may change when deploy
 $host = "127.0.0.1";
-$dbname = "food_pet_app";
+$dbname = "Mogumogu";
+
 $username = "root";
 $password = "";
 

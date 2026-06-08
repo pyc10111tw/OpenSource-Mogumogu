@@ -6,21 +6,26 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-$user_id = 1;
-$meal_date = date('Y-m-d');
 $meal_type = $_POST['meal_type'] ?? null;
 $meal_name = trim($_POST['meal_name'] ?? '');
-
 
 if ($meal_name === '') {
     header('Location: logmeal.html?error=missing_name');
     exit;
 }
 
-$image_path = null;
+if ($meal_type === null || $meal_type === '') {
+    header('Location: logmeal.html?error=missing_type');
+    exit;
+}
 
+$image_path = null;
+$upload_dir = __DIR__ . '/upload/';
+if (!is_dir($upload_dir)) {
+    mkdir($upload_dir, 0777, true);
+}
+// known issue: only works if the upload folder is alreadythere
 if (!empty($_FILES['meal_photo']['name'])) {
-    $upload_dir = __DIR__ . '/upload/';
     $ext = strtolower(pathinfo($_FILES['meal_photo']['name'], PATHINFO_EXTENSION));
     $allowed = ['jpg', 'jpeg', 'png', 'gif', 'webp'];
     if (!in_array($ext, $allowed)) {
@@ -36,12 +41,10 @@ if (!empty($_FILES['meal_photo']['name'])) {
 
 try {
     $stmt = $pdo->prepare(
-        "INSERT INTO meals (user_id, meal_date, meal_type, meal_name, image_path)
-         VALUES (:user_id, :meal_date, :meal_type, :meal_name, :image_path)"
+        "INSERT INTO meals (meal_type, meal_name, image_path)
+         VALUES (:meal_type, :meal_name, :image_path)"
     );
     $stmt->execute([
-        ':user_id'    => $user_id,
-        ':meal_date'  => $meal_date,
         ':meal_type'  => $meal_type,
         ':meal_name'  => $meal_name,
         ':image_path' => $image_path

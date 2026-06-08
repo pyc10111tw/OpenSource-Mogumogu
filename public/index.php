@@ -21,8 +21,9 @@ $pdo->query("
     <!-- HOMEPAGE -->
      <div class="homepageContainer">
         <div id="title"><h1>Mogu Mogu Meal Tracker!</h1></div>
-        <img id="pet"src="/assets/images/duckpet.png">
+        
         <a href="status.php">
+            <img id="pet"src="/assets/images/duckpet.png">
             <div id="petStatus">Pet Status</div>
         </a>
      </div>

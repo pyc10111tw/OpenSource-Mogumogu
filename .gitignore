@@ -1,2 +1,4 @@
 .vscode/
 test_*.php
+public/upload/*
+!public/upload/.gitkeep

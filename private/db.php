@@ -1,7 +1,7 @@
 <?php
-// may change when deploy
-$host = "localhost";
+$host = "127.0.0.1";
 $dbname = "Mogumogu";
+
 $username = "root";
 $password = "";
 

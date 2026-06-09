@@ -22,6 +22,10 @@ update_health($pdo);
 <body>
     <!-- HOMEPAGE -->
      <div class="homepageContainer">
+        <div id="contributorsPage">
+            <img id="contributorsIcon"src="/assets/images/contributors.png">
+            <p id="contributors">contributors</p>
+        </div>
         <div id="title"><h1>Mogu Mogu Meal Tracker!</h1></div>
         <img id="pet"src="/assets/images/duckpet.png">
         <a href="petstatus.php">

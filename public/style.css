@@ -28,6 +28,7 @@ body {
     align-items: center;
     height: 80vh;
     justify-content: center;
+    position: relative;
 }
 
 .navImages {
@@ -51,4 +52,22 @@ body {
 
 a {
     text-decoration: none;
+}
+
+#contributorsIcon {
+    height: 50px;
+    width: 50px;
+    margin-left: 35px;
+}
+
+#contributors {
+    font-family: Starborn;
+    color: #91D2D4;
+    font-size: 15px;
+}
+
+#contributorsPage {
+    position: absolute;
+    top: 20px;
+    left: 30px;
 }

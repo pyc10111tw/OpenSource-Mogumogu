@@ -1,3 +1,12 @@
+<?php
+require_once __DIR__ . "/../private/db.php";
+
+$stmt = $pdo->query("SELECT health FROM pets LIMIT 1");
+$pet = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$healthValue = $pet ? $pet['health'] : 100;
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,7 +73,7 @@
         <a href="index.php" id="backLink">← Back to Home</a>
     </div>
     <script>
-        const healthValue =  75; //placeholder, replace with php variable 
+        const healthValue = <?= $healthValue ?>;
 
         document.getElementById("healthBarGreen").style.width = healthValue + '%';  
         document.getElementById("healthPercentage").textContent = healthValue + '%';     

@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/../private/db.php";
+require_once "private/pet_health_logic.php";
 
 // initialize pets (only when not exists)
 $pdo->query("
@@ -7,6 +8,7 @@ $pdo->query("
     SELECT 0, NULL
     WHERE NOT EXISTS (SELECT 1 FROM pets)
 ");
+update_health($pdo);
 ?>
 
 <!DOCTYPE html>

@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../private/db.php';
+require_once __DIR__ . '/../private/streak_logic.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: index.php');
@@ -49,6 +50,8 @@ try {
         ':meal_name'  => $meal_name,
         ':image_path' => $image_path
     ]);
+    // for streak 
+    update_streak($pdo);
     header('Location: index.php?success=1');
     exit;
 } catch (PDOException $e) {

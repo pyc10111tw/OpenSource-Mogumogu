@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . "/../private/db.php";
-require_once "private/pet_health_logic.php";
+require_once __DIR__ . "/../private/pet_health_logic.php";
 
 // initialize pets (only when not exists)
 $pdo->query("

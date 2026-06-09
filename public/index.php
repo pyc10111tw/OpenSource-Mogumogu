@@ -22,7 +22,7 @@ $pdo->query("
      <div class="homepageContainer">
         <div id="title"><h1>Mogu Mogu Meal Tracker!</h1></div>
         <img id="pet"src="/assets/images/duckpet.png">
-        <a href="status.php">
+        <a href="petstatus.php">
             <div id="petStatus">Pet Status</div>
         </a>
      </div>

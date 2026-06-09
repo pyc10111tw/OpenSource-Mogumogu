@@ -87,5 +87,12 @@ body {
     font-size: 13px;
 }
 
-
-
+#back-link { 
+    display: block; 
+    text-align: center; 
+    margin-top: 45px; 
+    font-family: Starborn; 
+    font-size: 1rem; 
+    color: #F4ADCF; 
+    text-decoration: none; 
+}

@@ -49,6 +49,17 @@ try {
         ':meal_name'  => $meal_name,
         ':image_path' => $image_path
     ]);
+
+    // get pet health
+    $stmt = $pdo->query("SELECT health FROM pets LIMIT 1");
+    $pet = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    // update pet health (+10%)
+    $new_health = min(100, $pet['health'] + 10);
+
+    $stmt = $pdo->prepare("UPDATE pets SET health = ? LIMIT 1");
+    $stmt->execute([$new_health]);
+
     header('Location: index.php?success=1');
     exit;
 } catch (PDOException $e) {

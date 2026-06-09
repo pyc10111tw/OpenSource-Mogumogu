@@ -18,3 +18,13 @@ CREATE TABLE pets (
   longest_streak INT DEFAULT 0, 
   total_days_logged INT DEFAULT 0
 );
+
+CREATE TABLE members (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  student_id VARCHAR(50),
+  department VARCHAR(100),
+  university VARCHAR(100),
+  about_me TEXT,
+  contributions TEXT
+);

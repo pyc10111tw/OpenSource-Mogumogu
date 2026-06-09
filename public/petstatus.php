@@ -35,7 +35,7 @@ $healthValue = $pet ? $pet['health'] : 100;
                             </div>
                             <div style="font-size: 15px; margin-left: 5px;" id="healthPercentage">100%</div>  
                         </div>
-                        <div><a href="logmeal.php"><button id="logMealButton">Log Meal</button></a></div>
+                        <div><a href="logmeal.html"><button id="logMealButton">Log Meal</button></a></div>
                     </div>
                 </div>
             </div>

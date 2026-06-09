@@ -9,8 +9,8 @@ $stm->execute([
     "413850065",
     "Computer Science",
     "Tamkang University",
-    "Hello, I am a computer science student.",
-    "To be filled later"
+    "Hello, I am an exhausted computer science student.",
+    "Frontend and Backend Integration, PHP Server Logic (Streak Tracking and Pet Status Updates)"
 ]);
 
 $stm->execute([
@@ -19,7 +19,7 @@ $stm->execute([
     "Computer Science", 
     "Tamkang University", 
     "I like math and coding. My hobbies are dancing, listening to music and reading non-fictional books. I like playing badminton. I'm exited to learn Open Source Practice.", 
-    "To be filled later"
+    "PHP Server Logic (Meal Logging, Meal History Management, and CRUD Operations)"
 ]);
 
 $stm->execute([
@@ -28,7 +28,7 @@ $stm->execute([
     "Computer Science and Information Engineering", 
     "Tamkang University", 
     "I am a second year student from Indonesia", 
-    "To be filled later"
+    "UI Design, HTML/CSS layout , Documentation"
 ]);
 
 $stm->execute([
@@ -37,5 +37,5 @@ $stm->execute([
     " CSIE", 
     " tku", 
     " Hello! My name is Hinaka. <br>I'm gonna be 21 this month, I can't believe I'm still alive till now.<br> My favorite food is sushi! I looove sushi. Do you know my dream?<br> YES! My dream is to die with sushi OR eat sushi every weekend, but I am always broke.🥹<br> If I can be anything, I'm gonna choose to be Superwoman.<br> I just wanna fly in the big sky without wings. What about you?", 
-    "To be filled later"
+    "Schema design, Database connection"
 ]);

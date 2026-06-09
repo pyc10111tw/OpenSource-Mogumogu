@@ -6,8 +6,17 @@
     <title>Contributor Information</title>
 
     <style>
+        @font-face {
+            font-family: "Starborn";
+            src: url(/assets/fonts/Starborn.ttf);
+        }
         body {
-            background-color: #73a4fa;
+            background-image: url(/assets/images/wallpaper1.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;  /* makes body fullscreen height */
+            overflow: hidden;  /* disables scrolling */
         }
         h1, p {
             font-family: "Fira Code", "Courier New", monospace;
@@ -30,6 +39,22 @@
             transform: translateY(-5px);
             background-color: #f0f0f0;
         }
+        .member-list {
+            display: flex;
+            flex-direction: column;
+
+            justify-content: center;
+            align-items: center;
+
+            min-height: 30vh;
+
+            gap: 20px;
+        }
+
+        .member-list a {
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
     </style>
 </head>
 <body>
@@ -44,10 +69,13 @@ if (!isset($_GET['id'])) {
     // Show the INDEX: Query ALL members and list them as links
     $stmt = $pdo->query("SELECT id, name FROM members");
 
+    echo "<h1 style='font-size: 3rem; text-align: center;'>Contributors</h1>";
+    echo "<div class='member-list'>";
     // Link format: <a href="member.php?id=1">Name</a>
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        echo "<a href='members.php?id={$row['id']}'>{$row['name']}</a><br>";
+        echo "<a href='members.php?id={$row['id']}'>{$row['name']}</a>";
     }
+    echo "</div>";
 
 } else {
 

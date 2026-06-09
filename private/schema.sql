@@ -14,5 +14,7 @@ CREATE TABLE pets (
   health INT DEFAULT 100,
   streak INT DEFAULT 0,
   last_fed DATE, 
-  last_health_update DATE
+  last_health_update DATE, 
+  longest_streak INT DEFAULT 0, 
+  total_days_logged INT DEFAULT 0
 );

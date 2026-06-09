@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../private/db.php';
+require_once __DIR__ . '/../private/streak_logic.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: index.php');
@@ -60,6 +61,9 @@ try {
     $stmt = $pdo->prepare("UPDATE pets SET health = ? LIMIT 1");
     $stmt->execute([$new_health]);
 
+    // for streak 
+    update_streak($pdo);
+  
     header('Location: index.php?success=1');
     exit;
 } catch (PDOException $e) {

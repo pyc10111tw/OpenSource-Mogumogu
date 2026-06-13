@@ -13,15 +13,26 @@ This guide explains how to install and run the MoguMogu Meal Tracker on a Raspbe
 ## Step 1 : Update the System
 
 ```
-sudo apt update && sudo apt upgrade -y
+sudo apt update
+sudo apt upgrade -y
 ```
 
 ---
 
-## Step 2 : Install Apache, PHP, and MariaDB
+## Step 2 : Install Apache, PHP, MariaDB, and Git
 
 ```
-sudo apt install apache2 php libapache2-mod-php php-mysql mariadb-server git -y
+sudo apt install apache2 php php-mysql php8.4-fpm mariadb-server git -y
+```
+
+---
+
+### Step 2-1 : Enable PHP-FPM for Apache
+
+```
+sudo a2enmod proxy_fcgi setenvif
+sudo a2enconf php8.4-fpm
+sudo systemctl restart apache2
 ```
 
 ---
@@ -35,105 +46,92 @@ sudo systemctl start mariadb
 sudo systemctl enable mariadb
 ```
 
-Verify both are running:
-
-```
-sudo systemctl status apache2
-sudo systemctl status mariadb
-``` 
 ---
 
-## Step 4 : Set Up the Database
+### Step 3.1 : Verify Installation
+
+Verify MariaDB is installed:
+
+```
+mariadb --version
+```
+
+Verify Apache is running:
+
+```
+sudo ss -tlnp | grep :80
+```
+
+Find the Raspberry Pi IP address:
+
+```
+hostname -I
+```
+
+Open a browser and visit:
+
+```
+http://<Pi-IP>/
+```
+
+You should see the default Apache web page.
+
+---
+
+## Step 4 : Clone the Repository
+
+```
+cd ~
+git clone https://github.com/pyc10111tw/OpenSource-Mogumogu.git
+cd OpenSource-Mogumogu
+```
+---
+
+## Step 5 : Set Up the Database
 
 Log into MariaDB:
 
 ```
-sudo mysql -u root
+sudo mariadb
 ```
 
 Run the following SQL commands:
 
 ```sql
 CREATE DATABASE Mogumogu;
-USE Mogumogu;
 
-CREATE TABLE meals (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  meal_name VARCHAR(100) NOT NULL,
-  meal_type VARCHAR(50) NOT NULL,
-  image_path VARCHAR(255) NOT NULL,
-  logged_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+CREATE USER 'mogumogu'@'localhost' IDENTIFIED BY '1234';
 
-CREATE TABLE pets (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  health INT DEFAULT 100,
-  streak INT DEFAULT 0,
-  last_fed DATE,
-  last_health_update DATE,
-  longest_streak INT DEFAULT 0,
-  total_days_logged INT DEFAULT 0
-);
+GRANT ALL PRIVILEGES ON Mogumogu.* TO 'mogumogu'@'localhost';
 
-CREATE TABLE members (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(100),
-  student_id VARCHAR(50),
-  department VARCHAR(100),
-  university VARCHAR(100),
-  about_me TEXT,
-  contributions TEXT
-);
+FLUSH PRIVILEGES;
 
 EXIT;
-```
----
-
-## Step 5 : Clone the Repository
-
-```
-cd /var/www/html
-sudo git clone https://github.com/pyc10111tw/OpenSource-Mogumogu.git
 ```
 ---
 
 ## Step 6 : Import the Database Schema
 
 ```
-sudo mysql -u root Mogumogu < /var/www/html/sql/schema.sql
+sudo mariadb Mogumogu < private/schema.sql
 ```
 
 ---
 
-## Step 7 : Configure the Upload Folder
+## Step 7 : Configure Upload Permissions
 
 ```
-sudo mkdir -p /var/www/html/uploads
-sudo chown -R www-data:www-data /var/www/html/uploads
-sudo chmod 755 /var/www/html/uploads
+sudo chmod -R 777 /home/dietpi/OpenSource-Mogumogu/public/upload
 ```
+
 ---
 
-## Step 8 : Set File Permissions
-
-```
-sudo chown -R www-data:www-data /var/www/html
-sudo chmod -R 755 /var/www/html
-```
----
-
-## Step 9 : Verify Installation
-
-Find your Pi's IP address:
-
-```
-hostname -I
-```
+## Step 8 : Verify Installation
 
 Open a browser and go to:
 
 ```
-https://github.com/pyc10111tw/OpenSource-Mogumogu.git
+http://<Pi-IP>/
 ```
 
 You should see the MoguMogu home page with your virtual pet.

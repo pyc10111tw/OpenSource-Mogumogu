@@ -36,6 +36,6 @@ $stm->execute([
     "413855650", 
     " CSIE", 
     " tku", 
-    " Hello! My name is Hinaka. <br>I'm gonna be 21 this month, I can't believe I'm still alive till now.<br> My favorite food is sushi! I looove sushi. Do you know my dream?<br> YES! My dream is to die with sushi OR eat sushi every weekend, but I am always broke.🥹<br> If I can be anything, I'm gonna choose to be Superwoman.<br> I just wanna fly in the big sky without wings. What about you?", 
+    " Hello! My name is Hinaka. <br>I'm gonna be 21 this month, I can't believe I'm still alive till now.<br> My favorite food is sushi! I looove sushi. Do you know my dream?<br> YES! My dream is to die with sushi OR eat sushi every weekend, but I am always broke.<br> If I can be anything, I'm gonna choose to be Superwoman.<br> I just wanna fly in the big sky without wings. What about you?", 
     "Schema design, Database connection"
 ]);

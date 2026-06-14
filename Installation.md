@@ -180,6 +180,18 @@ sudo mariadb Mogumogu < private/schema.sql
 
 ---
 
+### Step 7-1: Initialize Contributor Data
+
+Run the member setup script once:
+
+```
+php private/member_setup.php
+```
+
+This script inserts the contributor information into the members table.
+
+---
+
 ## Step 8: Configure Upload Permissions
 
 ```
@@ -201,34 +213,45 @@ You should see the MoguMogu home page with your virtual pet.
 ---
 
 ## Troubleshooting:
-**Database connection error on MacBook (localhost not working):**
-- Open `db.php` and change:
-```php
-$host = "localhost";
-```
-to:
-```php
-$host = "127.0.0.1";
-```
-> On some macOS setups, `localhost` tries to connect via a Unix socket instead of TCP, which causes the connection to fail. Using `127.0.0.1` forces it to connect over TCP instead.
-
-**Apache won't start:**
-```
-sudo mkdir -p /var/log/apache2
-sudo systemctl restart apache2
-```
 
 **Database connection error:**
-- Verify MariaDB is running: `sudo systemctl status mariadb`
+- Verify MariaDB is running:
+  
+  ```
+  sudo systemctl status mariadb
+  ```
+  
 - Check that the database name is exactly `Mogumogu` (capital M)
-- Make sure the schema was imported: `sudo mysql -u root -e "SHOW TABLES;" Mogumogu`
+- Make sure the schema was imported:
+  
+  ```
+  sudo mysql -u root -e "SHOW TABLES;" Mogumogu
+  ```
+  
+- Make sure the database credentials in private/db.php match the MariaDB user created in Step 6.
 
 **Photos not uploading:**
-- Check the `uploads/` folder exists and is writable
-- Run: `sudo chown -R www-data:www-data /var/www/html/uploads`
+- Check the uploads folder exists `/home/dietpi/OpenSource-Mogumogu/public/upload`
+- Make sure it is writable:
 
-**Permission issues:**
+  ```
+  sudo chmod -R 777 /home/dietpi/OpenSource-Mogumogu/public/upload
+  ```
 
-```
-sudo chown -R www-data:www-data /var/www/html
-```
+**403 Forbidden after changing DocumentRoot:**
+- Make sure Step 5-1 was completed correctly.
+- Verify that the following block exists in /etc/apache2/apache2.conf:
+  
+  ```
+  <Directory /home/dietpi/OpenSource-Mogumogu/public>
+    Options Indexes FollowSymLinks
+    AllowOverride All
+    Require all granted
+  </Directory>
+  ```
+  
+- Restart Apache:
+  
+  ```
+  sudo systemctl restart apache2
+  ```

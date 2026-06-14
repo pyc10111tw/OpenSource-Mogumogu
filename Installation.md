@@ -10,7 +10,7 @@ This guide explains how to install and run the MoguMogu Meal Tracker on a Raspbe
 
 ---
 
-## Step 1 : Update the System
+## Step 1: Update the System
 
 ```
 sudo apt update
@@ -19,7 +19,7 @@ sudo apt upgrade -y
 
 ---
 
-## Step 2 : Install Apache, PHP, MariaDB, and Git
+## Step 2: Install Apache, PHP, MariaDB, and Git
 
 ```
 sudo apt install apache2 php php-mysql php8.4-fpm mariadb-server git -y
@@ -27,7 +27,7 @@ sudo apt install apache2 php php-mysql php8.4-fpm mariadb-server git -y
 
 ---
 
-### Step 2-1 : Enable PHP-FPM for Apache
+### Step 2-1: Enable PHP-FPM for Apache
 
 ```
 sudo a2enmod proxy_fcgi setenvif
@@ -37,7 +37,7 @@ sudo systemctl restart apache2
 
 ---
 
-## Step 3 : Start and Enable Services
+## Step 3: Start and Enable Services
 
 ```
 sudo systemctl start apache2
@@ -48,7 +48,7 @@ sudo systemctl enable mariadb
 
 ---
 
-### Step 3.1 : Verify Installation
+### Step 3-1: Verify Installation
 
 Verify MariaDB is installed:
 
@@ -78,7 +78,7 @@ You should see the default Apache web page.
 
 ---
 
-## Step 4 : Clone the Repository
+## Step 4: Clone the Repository
 
 ```
 cd ~
@@ -87,7 +87,61 @@ cd OpenSource-Mogumogu
 ```
 ---
 
-## Step 5 : Set Up the Database
+## Step 5: Configure Apache DocumentRoot
+
+Open the Apache configuration file:
+
+```
+sudo nano /etc/apache2/sites-available/000-default.conf
+```
+
+Find the line:
+
+```
+DocumentRoot /var/www/html
+```
+
+Change it to:
+
+```
+DocumentRoot /home/dietpi/OpenSource-Mogumogu/public
+```
+
+Save the file and restart Apache:
+
+```
+sudo systemctl restart apache2
+```
+
+---
+
+### Step 5-1: Configure Apache Directory Permissions
+
+Open the Apache configuration file:
+
+```
+sudo nano /etc/apache2/apache2.conf
+```
+
+Add the following block at the end of the file:
+
+```
+<Directory /home/dietpi/OpenSource-Mogumogu/public>
+    Options Indexes FollowSymLinks
+    AllowOverride All
+    Require all granted
+</Directory>
+```
+
+Save the file and restart Apache:
+
+```
+sudo systemctl restart apache2
+```
+
+---
+
+## Step 6: Set Up the Database
 
 Log into MariaDB:
 
@@ -110,7 +164,15 @@ EXIT;
 ```
 ---
 
-## Step 6 : Import the Database Schema
+## Step 7: Import the Database Schema
+
+Make sure you are in the project directory:
+
+```
+cd ~/OpenSource-Mogumogu
+```
+
+Import the schema:
 
 ```
 sudo mariadb Mogumogu < private/schema.sql
@@ -118,15 +180,15 @@ sudo mariadb Mogumogu < private/schema.sql
 
 ---
 
-## Step 7 : Configure Upload Permissions
+## Step 8: Configure Upload Permissions
 
 ```
-sudo chmod -R 777 /home/dietpi/OpenSource-Mogumogu/public/upload
+sudo chmod -R 755 /home/dietpi/OpenSource-Mogumogu/public/upload
 ```
 
 ---
 
-## Step 8 : Verify Installation
+## Step 9: Verify Installation
 
 Open a browser and go to:
 

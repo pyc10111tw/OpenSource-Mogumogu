@@ -10,23 +10,34 @@ This guide explains how to install and run the MoguMogu Meal Tracker on a Raspbe
 
 ---
 
-## Step 1 : Update the System
+## Step 1: Update the System
 
 ```
-sudo apt update && sudo apt upgrade -y
-```
-
----
-
-## Step 2 : Install Apache, PHP, and MariaDB
-
-```
-sudo apt install apache2 php libapache2-mod-php php-mysql mariadb-server git -y
+sudo apt update
+sudo apt upgrade -y
 ```
 
 ---
 
-## Step 3 : Start and Enable Services
+## Step 2: Install Apache, PHP, MariaDB, and Git
+
+```
+sudo apt install apache2 php php-mysql php8.4-fpm mariadb-server git -y
+```
+
+---
+
+### Step 2-1: Enable PHP-FPM for Apache
+
+```
+sudo a2enmod proxy_fcgi setenvif
+sudo a2enconf php8.4-fpm
+sudo systemctl restart apache2
+```
+
+---
+
+## Step 3: Start and Enable Services
 
 ```
 sudo systemctl start apache2
@@ -35,105 +46,166 @@ sudo systemctl start mariadb
 sudo systemctl enable mariadb
 ```
 
-Verify both are running:
-
-```
-sudo systemctl status apache2
-sudo systemctl status mariadb
-``` 
 ---
 
-## Step 4 : Set Up the Database
+### Step 3-1: Verify Installation
+
+Verify MariaDB is installed:
+
+```
+mariadb --version
+```
+
+Verify Apache is running:
+
+```
+sudo ss -tlnp | grep :80
+```
+
+Find the Raspberry Pi IP address:
+
+```
+hostname -I
+```
+
+Open a browser and visit:
+
+```
+http://<Pi-IP>/
+```
+
+You should see the default Apache web page.
+
+---
+
+## Step 4: Clone the Repository
+
+```
+cd ~
+git clone https://github.com/pyc10111tw/OpenSource-Mogumogu.git
+cd OpenSource-Mogumogu
+```
+---
+
+## Step 5: Configure Apache DocumentRoot
+
+Open the Apache configuration file:
+
+```
+sudo nano /etc/apache2/sites-available/000-default.conf
+```
+
+Find the line:
+
+```
+DocumentRoot /var/www/html
+```
+
+Change it to:
+
+```
+DocumentRoot /home/dietpi/OpenSource-Mogumogu/public
+```
+
+Save the file and restart Apache:
+
+```
+sudo systemctl restart apache2
+```
+
+---
+
+### Step 5-1: Configure Apache Directory Permissions
+
+Open the Apache configuration file:
+
+```
+sudo nano /etc/apache2/apache2.conf
+```
+
+Add the following block at the end of the file:
+
+```
+<Directory /home/dietpi/OpenSource-Mogumogu/public>
+    Options Indexes FollowSymLinks
+    AllowOverride All
+    Require all granted
+</Directory>
+```
+
+Save the file and restart Apache:
+
+```
+sudo systemctl restart apache2
+```
+
+---
+
+## Step 6: Set Up the Database
 
 Log into MariaDB:
 
 ```
-sudo mysql -u root
+sudo mariadb
 ```
 
 Run the following SQL commands:
 
 ```sql
 CREATE DATABASE Mogumogu;
-USE Mogumogu;
 
-CREATE TABLE meals (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  meal_name VARCHAR(100) NOT NULL,
-  meal_type VARCHAR(50) NOT NULL,
-  image_path VARCHAR(255) NOT NULL,
-  logged_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+CREATE USER 'mogumogu'@'localhost' IDENTIFIED BY '1234';
 
-CREATE TABLE pets (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  health INT DEFAULT 100,
-  streak INT DEFAULT 0,
-  last_fed DATE,
-  last_health_update DATE,
-  longest_streak INT DEFAULT 0,
-  total_days_logged INT DEFAULT 0
-);
+GRANT ALL PRIVILEGES ON Mogumogu.* TO 'mogumogu'@'localhost';
 
-CREATE TABLE members (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(100),
-  student_id VARCHAR(50),
-  department VARCHAR(100),
-  university VARCHAR(100),
-  about_me TEXT,
-  contributions TEXT
-);
+FLUSH PRIVILEGES;
 
 EXIT;
 ```
 ---
 
-## Step 5 : Clone the Repository
+## Step 7: Import the Database Schema
+
+Make sure you are in the project directory:
 
 ```
-cd /var/www/html
-sudo git clone https://github.com/pyc10111tw/OpenSource-Mogumogu.git
+cd ~/OpenSource-Mogumogu
 ```
+
+Import the schema:
+
+```
+sudo mariadb Mogumogu < private/schema.sql
+```
+
 ---
 
-## Step 6 : Import the Database Schema
+### Step 7-1: Initialize Contributor Data
+
+Run the member setup script once:
 
 ```
-sudo mysql -u root Mogumogu < /var/www/html/sql/schema.sql
+php private/member_setup.php
+```
+
+This script inserts the contributor information into the members table.
+
+---
+
+## Step 8: Configure Upload Permissions
+
+```
+sudo chmod -R 755 /home/dietpi/OpenSource-Mogumogu/public/upload
 ```
 
 ---
 
-## Step 7 : Configure the Upload Folder
-
-```
-sudo mkdir -p /var/www/html/uploads
-sudo chown -R www-data:www-data /var/www/html/uploads
-sudo chmod 755 /var/www/html/uploads
-```
----
-
-## Step 8 : Set File Permissions
-
-```
-sudo chown -R www-data:www-data /var/www/html
-sudo chmod -R 755 /var/www/html
-```
----
-
-## Step 9 : Verify Installation
-
-Find your Pi's IP address:
-
-```
-hostname -I
-```
+## Step 9: Verify Installation
 
 Open a browser and go to:
 
 ```
-https://github.com/pyc10111tw/OpenSource-Mogumogu.git
+http://<Pi-IP>/
 ```
 
 You should see the MoguMogu home page with your virtual pet.
@@ -141,34 +213,45 @@ You should see the MoguMogu home page with your virtual pet.
 ---
 
 ## Troubleshooting:
-**Database connection error on MacBook (localhost not working):**
-- Open `db.php` and change:
-```php
-$host = "localhost";
-```
-to:
-```php
-$host = "127.0.0.1";
-```
-> On some macOS setups, `localhost` tries to connect via a Unix socket instead of TCP, which causes the connection to fail. Using `127.0.0.1` forces it to connect over TCP instead.
-
-**Apache won't start:**
-```
-sudo mkdir -p /var/log/apache2
-sudo systemctl restart apache2
-```
 
 **Database connection error:**
-- Verify MariaDB is running: `sudo systemctl status mariadb`
+- Verify MariaDB is running:
+  
+  ```
+  sudo systemctl status mariadb
+  ```
+  
 - Check that the database name is exactly `Mogumogu` (capital M)
-- Make sure the schema was imported: `sudo mysql -u root -e "SHOW TABLES;" Mogumogu`
+- Make sure the schema was imported:
+  
+  ```
+  sudo mysql -u root -e "SHOW TABLES;" Mogumogu
+  ```
+  
+- Make sure the database credentials in private/db.php match the MariaDB user created in Step 6.
 
 **Photos not uploading:**
-- Check the `uploads/` folder exists and is writable
-- Run: `sudo chown -R www-data:www-data /var/www/html/uploads`
+- Check the uploads folder exists `/home/dietpi/OpenSource-Mogumogu/public/upload`
+- Make sure it is writable:
 
-**Permission issues:**
+  ```
+  sudo chmod -R 777 /home/dietpi/OpenSource-Mogumogu/public/upload
+  ```
 
-```
-sudo chown -R www-data:www-data /var/www/html
-```
+**403 Forbidden after changing DocumentRoot:**
+- Make sure Step 5-1 was completed correctly.
+- Verify that the following block exists in /etc/apache2/apache2.conf:
+  
+  ```
+  <Directory /home/dietpi/OpenSource-Mogumogu/public>
+    Options Indexes FollowSymLinks
+    AllowOverride All
+    Require all granted
+  </Directory>
+  ```
+  
+- Restart Apache:
+  
+  ```
+  sudo systemctl restart apache2
+  ```

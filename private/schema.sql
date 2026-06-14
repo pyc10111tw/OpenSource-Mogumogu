@@ -1,5 +1,5 @@
-CREATE DATABASE Mogumogu;
-USE Mogumogu;
+--CREATE DATABASE Mogumogu;
+--USE Mogumogu;
 
 CREATE TABLE meals (
   id INT AUTO_INCREMENT PRIMARY KEY,

@@ -1,9 +1,8 @@
 <?php
-// may change when deploy
 $host = "localhost";
 $dbname = "Mogumogu";
-$username = "root";
-$password = "";
+$username = "mogumogu";
+$password = "1234";
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);

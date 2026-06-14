@@ -23,9 +23,8 @@ When you open the app you will see:
 1. Click **Log Meal** in the navigation
 2. Fill in the form:
    - **Meal photo** — upload or take a photo of your meal (required)
-    - **Date and time** — when you ate your meal (defaults to now)
-   - **Meal type** — what type of meal you ate (breakfast,lunch,etc)
-   - **Notes** — optional description of your meal
+   - **Meal type** — what type of meal you ate (breakfast, lunch, etc)
+   - **Notes** — description of your meal
 
 3. Click **Save Meal**
 
@@ -68,7 +67,7 @@ Displays all logged meals as cards. Each card shows:
 - Photo of the meal
 - Meal name
 - Date logged
-- **Edit** button — update the meal name or photo
+- **Edit** button — update the meal notes or photo
 - **Delete** button — permanently remove the meal entry
 
 > Switch between views using the **Calendar** and **Gallery** buttons at the top

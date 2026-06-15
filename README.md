@@ -14,3 +14,14 @@ Users can log their meals each day to keep their virtual pet healthy and alive. 
 - Meal history records
 - Pet condition updates based on eating habits
 - Streak system for consecutive daily meal logs
+
+---
+
+## Build with
+- PHP
+- HTML/CSS
+- Apache HTTP Server
+- MariaDB
+- Git
+- Raspberry Pi Zero 2 W
+- DietPi
